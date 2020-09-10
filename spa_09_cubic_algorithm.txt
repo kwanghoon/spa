@@ -103,4 +103,56 @@ Exericse: SPA 강의노트의 Scala 기반 구현을 실행해보시오.
    .../src/tip/solvers/CubicSolver.scala
 
  - https://cs.au.dk/~amoeller/spa/8-control-flow-analysis.pdf
+   [Slide]
+
+--------------------------------------------------------------
+
+[예제]
+
+ - 유한개의 토큰 집합 T = {t1, ..., tk}
+ - 유한개의 변수 집합 V = {x1, ..., xn}
+
+  변수 xi: 토큰들의 집합
+
+  T = { t1, t2, t3, t4, t5 }
+  V = { x1, x2, x3 }
+
+문제(problem) : 제약식
+
+ - t3 \in x1          : 토큰(원소) t3이 집합 x1에 속한다!
+  
+ - x1 \subseteq x2    : 집합 x1에 포함된 모든 원소가 집합 x2에 포함된다!
+  
+ - t3 \in x2          : 집합 x2에 t가 포함되면 x3의 모든 원소를 x4에 전달!
+     ===> x3 \subseteq x1
+
+ - t1 \in x2          : 
+     ===> x3 \subseteq x2
+
+ - t1 \in x3
+
+해(solution)
+
+  x1 = { t1, t3 }
+  x2 = { t1, t3 }
+
+  새로운 제약식 : x3 \subseteq x4  왜? t3가 x2에 포함되었기 때문에!
+
+  x3 = { t1 }
+  x4 = { t1 } 
+
+
+Cubic framework
+
+ - 3가지 유형의 제약식을 표현하는 방법:
+    그래프 G = (노드, 에지)
+        노드 : 변수들의 집합 V
+	   노드의 속성: ti \in xj 제약식 마다 ti를 xj에 가지고 있다!
+	             (비트 벡터 bitvector)
+	   
+	에지 : xi \subseteq xj 제약식 마다 xi에서 xj로 가는 에지를 둔다!
+	
+
+   
+
 
